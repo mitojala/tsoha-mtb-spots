@@ -1,6 +1,6 @@
 MTB-jännyyspaikat
 
-Sovelluksen avulla voi ylläpitää tietoja maastopyöräily spoteista, joissa on jotain erityistä tai haastavaa. Kyseessä on siis yksittäisiä kohtia maastossa, esimerkiksi pudotus kalliolta alas tai hyppyri. Mitä tahansa, jonka ajaminen kuumottaa normaalia enemmän. Pääkaupunkiseudulla näitä kohteita on paljonkin, mutta niitä ei ole koottu yhteen paikkaan, johon kaikilla halukkailla olisi helposti pääsy.
+Sovelluksen avulla voi etsiä ja lisätä tietokantaan maastopyöräily spotteja, joissa on jotain erityistä tai haastavaa. Kyseessä on siis yksittäisiä kohtia maastossa, esimerkiksi pudotus kalliolta alas tai hyppyri. Mitä tahansa, jonka ajaminen kuumottaa normaalia enemmän. Esimerkiksi pääkaupunkiseudulla näitä kohteita on paljonkin, mutta niitä ei ole koottu yhteen paikkaan, johon kaikilla halukkailla olisi helposti pääsy.
 
 Käyttäjä voi olla peruskäyttäjä tai ylläpitäjä.
 
