@@ -14,9 +14,7 @@ Ylläpitäjä voi lisätä/poistaa spotteja.
 
 ---
 
-Tietokanta / PostgreSQL
-
-Taulut:
+Database / PostgreSQL
 
 Users - table of users:
 
