@@ -1,3 +1,4 @@
+# Main module for starting the app
 
 from flask import Flask
 from os import getenv

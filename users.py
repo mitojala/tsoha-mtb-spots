@@ -1,6 +1,12 @@
+# Module for user handling
+
 from db import db
 from flask import session
 from werkzeug.security import check_password_hash, generate_password_hash
+
+# Function for user login
+# If user gives correct username and password, then user's id is
+# set to session which means the user is logged in
 
 
 def login(username, password):
@@ -16,9 +22,17 @@ def login(username, password):
         else:
             return False
 
+# Function for user logout
+# user_id is removed from session which means the user is
+# then logged out
+
 
 def logout():
     del session["user_id"]
+
+# Function for registering user
+# If adding user information to users table is successfull then user
+# is logged in
 
 
 def register(username, password):
@@ -32,6 +46,9 @@ def register(username, password):
     except:
         return False
     return login(username, password)
+
+# Function for checking if user is logged in
+# Returns user id if user is logged in, otherwise 0
 
 
 def user_id():
