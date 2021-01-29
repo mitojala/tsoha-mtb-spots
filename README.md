@@ -11,3 +11,22 @@ Spotit näkyvät kartalla ja niitä voi etsiä alueen mukaan.
 Käyttäjät voivat merkitä spotteihin suorituksen jolloin voidaan tilastoida esimerkiksi eniten/vähiten suorituksia keränneitä spotteja. Lisäksi muille käyttäjille voi lähettää haasteen.
 
 Ylläpitäjä voi lisätä/poistaa spotteja.
+
+---
+
+Tietokanta / PostgreSQL
+
+Taulut:
+
+Users - table of users:
+
+id : integer
+username : text
+password : text
+admin : boolean
+
+Spots - table of mtb spots:
+
+TODO
+
+---
