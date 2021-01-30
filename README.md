@@ -14,6 +14,12 @@ Ylläpitäjä voi lisätä/poistaa spotteja.
 
 ---
 
+Heroku:
+
+https://tsoha-mtb-spots.herokuapp.com/
+
+---
+
 Database / PostgreSQL
 
 Users - table of users:
@@ -25,6 +31,11 @@ admin : boolean
 
 Spots - table of mtb spots:
 
-TODO
+name : text
+type : text
+description : text
+sent_at : timestamp
+
+# more rows will be added
 
 ---

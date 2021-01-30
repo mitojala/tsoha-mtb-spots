@@ -3,6 +3,7 @@
 from app import app
 from flask import render_template, request, redirect
 import users
+import spots
 
 
 # Function returning main page
@@ -11,12 +12,14 @@ import users
 def index():
     return render_template("index.html")
 
-# Function returning mtb spots main page
+# Function returning mtb spots main page containing a list of
+# mtb spots.
 
 
 @app.route("/spots_main")
 def spots_main():
-    return render_template("spots_main.html")
+    list = spots.get_spot_list()
+    return render_template("spots_main.html", spots=list)
 
 # User login
 # If method is GET then login page is shown

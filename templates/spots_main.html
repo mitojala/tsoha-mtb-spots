@@ -1,3 +1,13 @@
 <p>Tämä sivu on vielä työn alla.</p>
 
+{% for spot in spots %}
+<i>Spotti:</i> {{ spot[0] }}
+<p>
+<i>Tyyppi:</i> {{ spot[1] }}
+<p>
+<i>Kuvaus:</i> {{ spot[2] }}
+<i>Aika:</i> {{ spot[3].strftime("%Y-%m-%d %H:%M:%S") }}
+<hr>
+{% endfor %}
+
 <a href="/">Takaisin etusivulle</a>
