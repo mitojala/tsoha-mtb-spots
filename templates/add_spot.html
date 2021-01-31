@@ -1,14 +1,30 @@
-<p>
-Anna spottista seuraavat tiedot:
-</p>
+
+<style>
+    p    {font-size:100%;}
+</style>
+
+<h3>Anna jännyyspaikasta seuraavat tiedot:</h3>
 
 <form action="/add_spot" method="post">
-    Nimi: <input type="text" name="name">
     <p>
-        Tyyppi: <input type="text" name="spot_type">
+    <label for="name">Nimi:</label><br>
+    <input type="text" name="name">
+    </p>
     <p>
+    <label for="name">Tyyppi:</label>
+    <input type="radio" name="spot_type" value="Droppi"> Droppi
+    <input type="radio" name="spot_type" value="Rolli"> Rolli
+    <input type="radio" name="spot_type" value="Gappi"> Gappi
+    <input type="radio" name="spot_type" value="Hyppyri"> Hyppyri
+    <input type="radio" name="spot_type" value="Yläpelti"> Yläpelti
+    </p>
     <p>
-        Kuvaus: <input type="text" name="description">
-    <p>
+    <label for="description">Kuvaus:</label><br>
+    <textarea name="description" rows="3" cols="40"></textarea>
+    </p>
     <input type="submit" value="Luo uusi spotti">
 </form>
+
+<p>
+    <a href="/spots_main">Takaisin spotteihin</a>
+</p>
