@@ -18,6 +18,8 @@ Heroku:
 
 https://tsoha-mtb-spots.herokuapp.com/
 
+Automatic deploys on.
+
 ---
 
 Database / PostgreSQL
@@ -39,3 +41,7 @@ sent_at : timestamp
 # more rows will be added
 
 ---
+
+TODO:
+
+- checkboxes for add_spot spot_type?
