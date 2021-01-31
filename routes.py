@@ -21,6 +21,22 @@ def spots_main():
     list = spots.get_spot_list()
     return render_template("spots_main.html", spots=list)
 
+# Function returning page for adding new mtb spots
+
+
+@app.route("/add_spot", methods=["GET", "POST"])
+def add_spot():
+    if request.method == "GET":
+        return render_template("add_spot.html")
+    if request.method == "POST":
+        name = request.form["name"]
+        spot_type = request.form["spot_type"]
+        description = request.form["description"]
+        if spots.add_spot(name, spot_type, description):
+            return redirect("/")
+        else:
+            return render_template("error.html", message="Spottin lisäyksessä ilmeni virhe")
+
 # User login
 # If method is GET then login page is shown
 # If method is POST then the login form is handled and user is
@@ -28,7 +44,7 @@ def spots_main():
 # otherwise redirect to error page
 
 
-@app.route("/login", methods=["get", "post"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
         return render_template("login.html")
@@ -56,7 +72,7 @@ def logout():
 # otherwise redirect to error page
 
 
-@app.route("/register", methods=["get", "post"])
+@app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
         return render_template("register.html")

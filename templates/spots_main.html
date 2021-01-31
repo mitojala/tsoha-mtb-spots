@@ -1,13 +1,25 @@
-<p>Tämä sivu on vielä työn alla.</p>
+<p>
+<a href="/add_spot">Lisää uusi jännyyspaikka</a>
+</p>
+
+<p>
+<a href="/">Takaisin etusivulle</a>
+</p>
+
+<p>
+Palveluun lisätyt jännyyspaikat:
+</p>
+<hr>
 
 {% for spot in spots %}
-<i>Spotti:</i> {{ spot[0] }}
+<i>Spotti:</i> {{ spot[1] }}
 <p>
-<i>Tyyppi:</i> {{ spot[1] }}
+<i>Tyyppi:</i> {{ spot[2] }}
 <p>
-<i>Kuvaus:</i> {{ spot[2] }}
-<i>Aika:</i> {{ spot[3].strftime("%Y-%m-%d %H:%M:%S") }}
+<i>Kuvaus:</i> {{ spot[3] }}
+<p>
+<i>Lisätty:</i> {{ spot[4].strftime("%Y-%m-%d %H:%M:%S") }}
+</p>
 <hr>
 {% endfor %}
 
-<a href="/">Takaisin etusivulle</a>
