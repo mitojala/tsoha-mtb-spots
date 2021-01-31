@@ -33,7 +33,7 @@ def add_spot():
         spot_type = request.form["spot_type"]
         description = request.form["description"]
         if spots.add_spot(name, spot_type, description):
-            return redirect("/")
+            return redirect("/spots_main")
         else:
             return render_template("error.html", message="Spottin lisäyksessä ilmeni virhe")
 
