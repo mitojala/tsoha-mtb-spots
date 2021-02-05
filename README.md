@@ -42,6 +42,12 @@ sent_at : timestamp
 
 ---
 
+Background images:
+
+index: Photo by Luca Beani on Unsplash
+
+---
+
 TODO:
 
 - checkboxes for add_spot spot_type?
