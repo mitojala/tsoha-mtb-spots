@@ -9,15 +9,25 @@
     h1 {
         position: relative;
         left: 30px;
-        top: 15px;
-        color: white
+        top: 20px;
+        color: white;
+        font-size: 250%;
     }
-    a, p    {
+
+    p {
+        position: relative;
+        left: 30px;
+        top: 15px;
+        color: white;
+        font-size: 150%;
+    }
+
+    a {
         position: relative;
         left: 30px;
         top: 20px;
         color: white;
-        font-size: 150%;
+        font-size: 120%;
     }
     
     .bg {
@@ -26,6 +36,7 @@
       /* background-image: url("https://images.unsplash.com/photo-1550514409-2fae5700615e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2250&q=80"); */
       /* background-image: url("https://images.unsplash.com/photo-1466976141595-ef0f80f1dce1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=3745&q=80"); */
       background-image: url("https://images.unsplash.com/photo-1610876126166-61165e67ceca?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&rect=0,1150,2000,1400");
+      
       /* Full height */
       height: 100%; 
     
@@ -36,13 +47,12 @@
     }
 </style>
 </head>
-<body>
     
-<div class="bg">
+<body class="bg">
 
 <h1>Maastopyöräilyn jännyyspaikat</h1>
 <p>
-<b>Näiden sivujen kautta voit etsiä ja lisätä omia jännyyspaikkoja muiden nähtäville.</b>
+<b>Etsi maastopyöräilyn jännyyspaikkoja ja lisää omia paikkoja muiden nähtäville.</b>
 </p>
 
 {% if session.user_id %}
@@ -51,5 +61,4 @@
 {% else %}
 <a href="/login">Kirjaudu sisään</a>
 {% endif %}
-</div>
-
+</body>
