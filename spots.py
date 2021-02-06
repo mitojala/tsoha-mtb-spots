@@ -1,3 +1,7 @@
+# Module for mtb spot handling
+
+# pylint: disable=E1101
+
 from db import db
 import users
 
