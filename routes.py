@@ -4,9 +4,10 @@ from app import app
 from flask import render_template, request, redirect
 import users
 import spots
-
+from os import getenv
 
 # Function returning main page
+
 
 @app.route("/")
 def index():
@@ -27,7 +28,8 @@ def spots_main():
 @app.route("/add_spot", methods=["GET", "POST"])
 def add_spot():
     if request.method == "GET":
-        return render_template("add_spot.html")
+        google_maps_url = getenv("GOOGLE_MAPS_URL")
+        return render_template("add_spot.html", google_maps_url=google_maps_url)
     if request.method == "POST":
         name = request.form["name"]
         spot_type = request.form["spot_type"]
@@ -36,6 +38,13 @@ def add_spot():
             return redirect("/spots_main")
         else:
             return render_template("error.html", message="Spottin lisäyksessä ilmeni virhe")
+
+# Function returning main page
+
+
+@app.route("/add_spot_to_map")
+def add_spot_to_map():
+    return render_template("add_spot_to_map.html")
 
 # User login
 # If method is GET then login page is shown

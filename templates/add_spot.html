@@ -1,30 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    p {
+      font-size: 100%;
+    }
+  </style>
 
-<style>
-    p    {font-size:100%;}
-</style>
+  <head>
+    <title>Add Map</title>
 
-<h3>Anna jännyyspaikasta seuraavat tiedot:</h3>
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+    </style>
 
-<form action="/add_spot" method="post">
+    <!-- formatter instructions to ignore following line -->
+    <!-- prettier-ignore -->
+    <script src={{ google_maps_url }} async></script>
+
+    <script>
+      let map;
+      let marker;
+      const mtbSpotMarkersArray = [];
+
+      // Initialize and add the map
+      function initMap() {
+        // The location of Helsinki
+        const helsinki = { lat: 60.169857, lng: 24.938379 };
+
+        // The map, centered at Helsinki
+        // TODO: centered at user location (ip?)
+        map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: helsinki,
+        });
+
+        // Place mtb spot marker in initial position
+
+        const marker = new google.maps.Marker({
+          position: helsinki,
+          map: map,
+        });
+
+        // Place mtb spot marker by user mouse right click
+
+        // map.addListener("rightclick", (e) => {
+        //   addMarker(e.latLng);
+        // });
+
+        // Move mtb spot marker by mouse click
+
+        map.addListener("click", (mapsMouseEvent) => {
+          marker.setPosition(mapsMouseEvent.latLng);
+        });
+      }
+    </script>
+
+    <script>
+      const latitude = document.getElementsByName("latitude")[0];
+      console.log(latitude);
+    </script>
+  </head>
+
+  <body>
+    <div id="map"></div>
+
+    <h3>Anna jännyyspaikasta seuraavat tiedot:</h3>
+
+    <form action="/add_spot" method="post">
+      <p>
+        <label for="name">Nimi:</label><br />
+        <input type="text" name="name" />
+      </p>
+      <p>
+        <label for="name">Tyyppi:</label>
+        <input type="radio" name="spot_type" value="Droppi" /> Droppi
+        <input type="radio" name="spot_type" value="Rolli" /> Rolli
+        <input type="radio" name="spot_type" value="Gappi" /> Gappi
+        <input type="radio" name="spot_type" value="Hyppyri" /> Hyppyri
+        <input type="radio" name="spot_type" value="Yläpelti" /> Yläpelti
+      </p>
+      <p>
+        <label for="description">Kuvaus:</label><br />
+        <textarea name="description" rows="3" cols="40"></textarea>
+      </p>
+      <p>
+        <label for="latlong">Koordinaatit:</label><br />
+        <input type="text" name="latlong" />
+      </p>
+      <input type="submit" value="Luo uusi spotti" />
+    </form>
+
     <p>
-    <label for="name">Nimi:</label><br>
-    <input type="text" name="name">
+      <a href="/spots_main">Takaisin spotteihin</a>
     </p>
-    <p>
-    <label for="name">Tyyppi:</label>
-    <input type="radio" name="spot_type" value="Droppi"> Droppi
-    <input type="radio" name="spot_type" value="Rolli"> Rolli
-    <input type="radio" name="spot_type" value="Gappi"> Gappi
-    <input type="radio" name="spot_type" value="Hyppyri"> Hyppyri
-    <input type="radio" name="spot_type" value="Yläpelti"> Yläpelti
-    </p>
-    <p>
-    <label for="description">Kuvaus:</label><br>
-    <textarea name="description" rows="3" cols="40"></textarea>
-    </p>
-    <input type="submit" value="Luo uusi spotti">
-</form>
-
-<p>
-    <a href="/spots_main">Takaisin spotteihin</a>
-</p>
+  </body>
+</html>
