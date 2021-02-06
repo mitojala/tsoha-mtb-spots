@@ -21,7 +21,13 @@
 
     <!-- formatter instructions to ignore following line -->
     <!-- prettier-ignore -->
-    <script src={{ google_maps_url }} async></script>
+    <!-- NOTE! Map doesn't load in Heroku-->
+    <!-- <script src={{ google_maps_url }} async></script> -->
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_dW2ZKqFJq85ClOZpE06hHh8FMQpwPTo&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
 
     <script>
       let map;
@@ -47,6 +53,7 @@
           map: map,
         });
 
+        // NOT USED
         // Place mtb spot marker by user mouse right click
 
         // map.addListener("rightclick", (e) => {
