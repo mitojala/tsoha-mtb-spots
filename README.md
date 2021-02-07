@@ -14,17 +14,21 @@ Ylläpitäjä voi lisätä/poistaa spotteja.
 
 ---
 
-Heroku:
-
-https://tsoha-mtb-spots.herokuapp.com/
-
-Automatic deploys on.
+Current state:
 
 User must register in order to use the application. Otherwise the
 functions are self explanatory at the moment.
 
 Basic functions have been enabled. More complex things such as working
 map interface is under work.
+
+---
+
+Heroku:
+
+https://tsoha-mtb-spots.herokuapp.com/
+
+Automatic deploys on.
 
 ---
 
@@ -58,7 +62,6 @@ TODO:
 
 - checkboxes for add_spot spot_type? (adds complexity to handling of
   the input)
-- coordinates to add_spot form from google maps marker
 - option to manually input coordinates that will update google maps
   marker position
 - map search for spots
