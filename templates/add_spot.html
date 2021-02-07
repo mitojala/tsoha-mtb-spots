@@ -64,13 +64,18 @@
 
         map.addListener("click", (mapsMouseEvent) => {
           marker.setPosition(mapsMouseEvent.latLng);
+          const coords = JSON.stringify(mapsMouseEvent.latLng);
+          const parsedCoords = JSON.parse(coords);
+          //   document.getElementById("lat").innerHTML = JSON.stringify(
+          //     parsedCoords.lat
+          //   );
+          document.getElementById("lat").value = parsedCoords.lat;
+          //   document.getElementById("long").innerHTML = JSON.stringify(
+          //     parsedCoords.lng
+          //   );
+          document.getElementById("long").value = parsedCoords.lng;
         });
       }
-    </script>
-
-    <script>
-      const latitude = document.getElementsByName("marker")[0];
-      console.log(latitude);
     </script>
   </head>
 
@@ -78,6 +83,9 @@
     <div id="map"></div>
 
     <h3>Anna jännyyspaikasta seuraavat tiedot:</h3>
+
+    <!-- <p id="lat"></p>
+    <p id="long"></p> -->
 
     <form action="/add_spot" method="post">
       <p>
@@ -96,9 +104,14 @@
         <label for="description">Kuvaus:</label><br />
         <textarea name="description" rows="3" cols="40"></textarea>
       </p>
+      Koordinaatit:<br />
       <p>
-        <label for="latlong">Koordinaatit:</label><br />
-        <input type="text" name="latlong" />
+        <label for="lat">Leveysaste (latitude):</label><br />
+        <input id="lat" type="text" name="lat" />
+      </p>
+      <p>
+        <label for="long">Pituusaste (longitude):</label><br />
+        <input id="long" type="text" name="long" />
       </p>
       <input type="submit" value="Luo uusi spotti" />
     </form>
