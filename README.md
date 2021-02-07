@@ -20,6 +20,12 @@ https://tsoha-mtb-spots.herokuapp.com/
 
 Automatic deploys on.
 
+User must register in order to use the application. Otherwise the
+functions are self explanatory at the moment.
+
+Basic functions have been enabled. More complex things such as working
+map interface is under work.
+
 ---
 
 Database / PostgreSQL
@@ -50,4 +56,9 @@ index: Photo by Luca Beani on Unsplash
 
 TODO:
 
-- checkboxes for add_spot spot_type?
+- checkboxes for add_spot spot_type? (adds complexity to handling of
+  the input)
+- coordinates to add_spot form from google maps marker
+- option to manually input coordinates that will update google maps
+  marker position
+- map search for spots
