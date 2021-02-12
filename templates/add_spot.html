@@ -84,9 +84,6 @@
 
     <h3>Anna jännyyspaikasta seuraavat tiedot:</h3>
 
-    <!-- <p id="lat"></p>
-    <p id="long"></p> -->
-
     <form action="/add_spot" method="post">
       <p>
         <label for="name">Nimi:</label><br />
@@ -107,11 +104,11 @@
       Koordinaatit:<br />
       <p>
         <label for="lat">Leveysaste (latitude):</label><br />
-        <input id="lat" type="text" name="lat" />
+        <input id="lat" type="number" name="lat" />
       </p>
       <p>
         <label for="long">Pituusaste (longitude):</label><br />
-        <input id="long" type="text" name="long" />
+        <input id="long" type="number" name="long" />
       </p>
       <input type="submit" value="Luo uusi spotti" />
     </form>
