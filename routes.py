@@ -88,6 +88,10 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
+        if not len(username) >= 4:
+            return render_template("error.html", message="Käyttäjänimen pitää olla vähintään neljä (4) merkkiä pitkä.")
+        if not len(password) >= 6:
+            return render_template("error.html", message="Salasanan pitää olla vähintään kuusi (6) merkkiä pitkä.")
         if users.register(username, password):
             return redirect("/")
         else:
