@@ -48,7 +48,7 @@ type : text
 description : text
 sent_at : timestamp
 
-# more rows will be added
+- more rows will be added
 
 ---
 
@@ -65,3 +65,4 @@ TODO:
 - option to manually input coordinates that will update google maps
   marker position
 - map search for spots
+- user input validation in forms
