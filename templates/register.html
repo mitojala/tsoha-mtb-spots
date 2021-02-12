@@ -1,4 +1,4 @@
-<form action="/register" method="post">
+<form action="/register" method="post" onsubmit="return check(this)">
   Kayttajatunnus: <input type="text" name="username" />
   <p>Salasana: <input type="password" name="password" /></p>
 
@@ -6,3 +6,17 @@
     <input type="submit" value="Luo käyttäjätili" />
   </p>
 </form>
+
+<script>
+  function check(form) {
+    if (form.username.value.length < 4) {
+      alert("Käyttäjänimen tulee olla vähintään neljä (4) merkkiä pitkä.");
+      return false;
+    }
+    if (form.password.value.length < 6) {
+      alert("Salasanan tulee olla vähintään kuusi (6) merkkiä pitkä.");
+      return false;
+    }
+    return true;
+  }
+</script>
