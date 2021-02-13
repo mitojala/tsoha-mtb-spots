@@ -1,20 +1,81 @@
-<p>
-  <a href="/add_spot">Lisää uusi jännyyspaikka</a>
-</p>
+<!DOCTYPE html>
+<html>
+  <style>
+    p {
+      font-size: 100%;
+    }
+  </style>
 
-<p>
-  <a href="/">Takaisin etusivulle</a>
-</p>
+  <head>
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+    </style>
 
-<p>Palveluun lisätyt jännyyspaikat:</p>
-<hr />
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_dW2ZKqFJq85ClOZpE06hHh8FMQpwPTo&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
 
-{% for spot in spots %}
-<i>Spotti:</i> {{ spot[1] }}
-<p><i>Tyyppi:</i> {{ spot[2] }}</p>
+    <script>
+      let map;
+      let marker;
+      const mtbSpotMarkersArray = [];
 
-<p><i>Kuvaus:</i> {{ spot[3] }}</p>
+      // Initialize and add the map
+      function initMap() {
+        // The location of Helsinki
+        const helsinki = { lat: 60.169857, lng: 24.938379 };
 
-<p><i>Lisätty:</i> {{ spot[4].strftime("%Y-%m-%d %H:%M:%S") }}</p>
-<hr />
-{% endfor %}
+        map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: helsinki,
+        });
+
+        // Place mtb spot marker in initial position
+
+        const marker = new google.maps.Marker({
+          position: helsinki,
+          map: map,
+        });
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="map"></div>
+    <p>
+      <a href="/add_spot">Lisää uusi jännyyspaikka</a>
+    </p>
+
+    <p>
+      <a href="/">Takaisin etusivulle</a>
+    </p>
+
+    <h3>Palveluun lisätyt jännyyspaikat:</h3>
+    <hr />
+
+    {% for spot in spots %}
+    <b>Spotti:</b> {{ spot.name }}
+    <p><b>Tyyppi:</b> {{ spot.spot_type }}</p>
+
+    <p><b>Kuvaus:</b> {{ spot.description }}</p>
+
+    <section>
+      <h3>Koordinaatit:</h3>
+
+      <div>
+        <p>Leveysaste (latitude):<br />{{ spot.latitude }}</p>
+        <p>Pituusaste (longitude):<br />{{ spot.longitude }}</p>
+      </div>
+    </section>
+    <p><i>Lisätty:</i> {{ spot.sent_at.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+    <hr />
+    {% endfor %}
+  </body>
+</html>

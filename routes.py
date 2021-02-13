@@ -34,7 +34,9 @@ def add_spot():
         name = request.form["name"]
         spot_type = request.form["spot_type"]
         description = request.form["description"]
-        if spots.add_spot(name, spot_type, description):
+        latitude = request.form["lat"]
+        longitude = request.form["long"]
+        if spots.add_spot(name, spot_type, description, latitude, longitude):
             return redirect("/spots_main")
         else:
             return render_template("error.html", message="Spottin lisäyksessä ilmeni virhe")

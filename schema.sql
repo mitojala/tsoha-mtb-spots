@@ -8,7 +8,9 @@ CREATE TABLE users (
 CREATE TABLE spots (
     id SERIAL PRIMARY KEY,
     name TEXT,
-    type TEXT,
+    spot_type TEXT,
     description TEXT,
+    latitude DECIMAL,
+    longitude DECIMAL,
     sent_at TIMESTAMP
 );

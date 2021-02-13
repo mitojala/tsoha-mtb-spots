@@ -65,4 +65,6 @@ TODO:
 - option to manually input coordinates that will update google maps
   marker position
 - map search for spots
-- user input validation in forms
+- user input validation to add_spot form
+- user/admin privileges
+- proper alert to register user if username is taken

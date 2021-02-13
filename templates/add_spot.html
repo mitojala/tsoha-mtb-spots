@@ -7,8 +7,6 @@
   </style>
 
   <head>
-    <title>Add Map</title>
-
     <style type="text/css">
       /* Set the size of the div element that contains the map */
       #map {
@@ -66,13 +64,9 @@
           marker.setPosition(mapsMouseEvent.latLng);
           const coords = JSON.stringify(mapsMouseEvent.latLng);
           const parsedCoords = JSON.parse(coords);
-          //   document.getElementById("lat").innerHTML = JSON.stringify(
-          //     parsedCoords.lat
-          //   );
+
           document.getElementById("lat").value = parsedCoords.lat;
-          //   document.getElementById("long").innerHTML = JSON.stringify(
-          //     parsedCoords.lng
-          //   );
+
           document.getElementById("long").value = parsedCoords.lng;
         });
       }
@@ -104,11 +98,11 @@
       Koordinaatit:<br />
       <p>
         <label for="lat">Leveysaste (latitude):</label><br />
-        <input id="lat" type="number" name="lat" />
+        <input id="lat" type="number" name="lat" step="any" />
       </p>
       <p>
         <label for="long">Pituusaste (longitude):</label><br />
-        <input id="long" type="number" name="long" />
+        <input id="long" type="number" name="long" step="any" />
       </p>
       <input type="submit" value="Luo uusi spotti" />
     </form>
