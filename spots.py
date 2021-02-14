@@ -3,9 +3,10 @@
 # pylint: disable=E1101
 
 from db import db
+from sqlalchemy_serializer import SerializerMixin
 import users
 
-class Spots(db.Model):
+class Spots(db.Model, SerializerMixin):
 
     __tablename__ = 'spots'
 
@@ -29,8 +30,10 @@ class Spots(db.Model):
 
 
 def get_spot_list():
+    # sql = "SELECT * FROM spots"
+    # result = db.session.execute(sql)
+    # return result.fetchall()
     return Spots.query.all()
-
 
 # Function for inserting a new mtb spot into database
 

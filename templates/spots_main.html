@@ -22,14 +22,19 @@
       async
     ></script>
 
+    <!-- Spot list to JSON objects -->
+
+    <script type="text/javascript">
+      const SPOT_LIST = {{ spotsJson|tojson|safe }}
+      const spotsJsonObject = JSON.parse(SPOT_LIST)
+    </script>
+
     <script>
       let map;
       let marker;
-      const mtbSpotMarkersArray = [];
 
       // Initialize and add the map
       function initMap() {
-        // The location of Helsinki
         const helsinki = { lat: 60.169857, lng: 24.938379 };
 
         map = new google.maps.Map(document.getElementById("map"), {
@@ -39,16 +44,31 @@
 
         // Place mtb spot marker in initial position
 
-        const marker = new google.maps.Marker({
-          position: helsinki,
-          map: map,
+        spotsJsonObject.forEach((spot) => {
+          marker = new google.maps.Marker({
+            position: {
+              lat: spot.latitude,
+              lng: spot.longitude,
+            },
+            map: map,
+            title: spot.name,
+          });
         });
+
+        //        marker = new google.maps.Marker({
+        //          position: {
+        //            lat: spotsJsonObject[0].latitude,
+        //            lng: spotsJsonObject[0].longitude,
+        //          },
+        //          map: map,
+        //        });
       }
     </script>
   </head>
 
   <body>
     <div id="map"></div>
+
     <p>
       <a href="/add_spot">Lisää uusi jännyyspaikka</a>
     </p>
@@ -67,14 +87,14 @@
     <p><b>Kuvaus:</b> {{ spot.description }}</p>
 
     <section>
-      <h3>Koordinaatit:</h3>
+      <b>Koordinaatit:</b>
 
       <div>
         <p>Leveysaste (latitude):<br />{{ spot.latitude }}</p>
         <p>Pituusaste (longitude):<br />{{ spot.longitude }}</p>
       </div>
     </section>
-    <p><i>Lisätty:</i> {{ spot.sent_at.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+    <p><b>Lisätty:</b> {{ spot.sent_at.strftime("%Y-%m-%d %H:%M:%S") }}</p>
     <hr />
     {% endfor %}
   </body>

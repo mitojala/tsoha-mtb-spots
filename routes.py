@@ -1,13 +1,21 @@
 # Module for handling page requests
 
 from app import app
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, jsonify
 import users
 import spots
+import json
+import simplejson
 from os import getenv
+from json import JSONEncoder
+from sqlalchemy_serializer import SerializerMixin
+
+
+class MyEncoder(JSONEncoder):
+        def default(self, o):
+            return o.__dict__ 
 
 # Function returning main page
-
 
 @app.route("/")
 def index():
@@ -17,10 +25,22 @@ def index():
 # mtb spots.
 
 
+def without_keys(d, keys):
+    return {key: d[key] for key in d if key not in keys}
+
 @app.route("/spots_main")
+
 def spots_main():
     list = spots.get_spot_list()
-    return render_template("spots_main.html", spots=list)
+    dict_list = []
+    invalid = {"_sa_instance_state", "sent_at"}  
+    for spot in list:
+        spot_dict = spot.__dict__
+        spot_dict_without_invalid = without_keys(spot_dict, invalid)
+        dict_list.append(spot_dict_without_invalid)
+    # spots_dict = map(lambda spot: spot.__dict__, list)
+    spotsJson = simplejson.dumps(dict_list)
+    return render_template("spots_main.html", spots=list, spotsJson=spotsJson)
 
 # Function returning page for adding new mtb spots
 
