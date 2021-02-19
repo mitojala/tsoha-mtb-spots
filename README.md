@@ -16,11 +16,13 @@ Ylläpitäjä voi lisätä/poistaa spotteja.
 
 Current state:
 
-User must register in order to use the application. Otherwise the
-functions are self explanatory at the moment.
+Basic functions such as user handling, creating mtb spots (with map interface), listing added spots and showing these on map have been enabled. More complex features will be added in the capacity the time limit permits (final deadline).
 
-Basic functions have been enabled. More complex things such as working
-map interface is under work.
+Instructions for usage:
+
+User must register in order to use the application.
+
+Mouse hover on a google maps marker shows the spot name. Otherwise the functions are self explanatory at the moment.
 
 ---
 
@@ -46,6 +48,8 @@ Spots - table of mtb spots:
 name : text
 type : text
 description : text
+latitude: decimal
+longitude: decimal
 sent_at : timestamp
 
 - more rows will be added
@@ -67,4 +71,6 @@ TODO:
 - map search for spots
 - user input validation to add_spot form
 - user/admin privileges
-- proper alert to register user if username is taken
+- better feedback in register user if username is taken
+- mouse hover on a google maps marker shows information box
+- image of spot
