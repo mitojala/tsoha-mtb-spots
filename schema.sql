@@ -10,6 +10,7 @@ CREATE TABLE spots (
     name TEXT,
     spot_type TEXT,
     description TEXT,
+    difficulty INTEGER,
     latitude DECIMAL,
     longitude DECIMAL,
     sent_at TIMESTAMP

@@ -14,14 +14,16 @@ class Spots(db.Model, SerializerMixin):
     name = db.Column(db.Text)
     spot_type = db.Column(db.Text)
     description = db.Column(db.Text)
+    difficulty = db.Column(db.Numeric)
     latitude = db.Column(db.Numeric)
     longitude = db.Column(db.Numeric)
     sent_at = db.Column(db.DateTime)
 
-    def __init__(self, name, spot_type, description, latitude, longitude, sent_at):
+    def __init__(self, name, spot_type, description, difficulty, latitude, longitude, sent_at):
         self.name = name
         self.spot_type = spot_type
         self.description = description
+        self.difficulty = difficulty
         self.latitude = latitude
         self.longitude = longitude
         self.sent_at = sent_at
@@ -37,17 +39,17 @@ def get_spot_list():
 
 # Function for inserting a new mtb spot into database
 
-def add_spot(name, spot_type, description, latitude, longitude):
+def add_spot(name, spot_type, description, difficulty, latitude, longitude):
     user_id = users.user_id()
     if user_id == 0:
         return False
 
     print(name, spot_type, description)
-    # try:
-    sql = "INSERT INTO spots (name,spot_type,description, latitude, longitude, sent_at) VALUES (:name,:spot_type,:description,:latitude,:longitude,NOW())"
-    db.session.execute(
-        sql, {"name": name, "spot_type": spot_type, "description": description, "latitude": latitude, "longitude": longitude})
-    db.session.commit()
-    # except:
-    #     return False
+    try:
+        sql = "INSERT INTO spots (name,spot_type,description,difficulty,latitude,longitude,sent_at) VALUES (:name,:spot_type,:description,:difficulty,:latitude,:longitude,NOW())"
+        db.session.execute(
+        sql, {"name": name, "spot_type": spot_type, "description": description, "difficulty": difficulty, "latitude": latitude, "longitude": longitude})
+        db.session.commit()
+    except:
+        return False
     return True
