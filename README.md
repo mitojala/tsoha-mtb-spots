@@ -74,3 +74,4 @@ TODO:
 - better feedback in register user if username is taken
 - mouse hover on a google maps marker shows information box
 - image of spot
+- last visit information to spot details
