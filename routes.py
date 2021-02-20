@@ -28,19 +28,39 @@ def index():
 def without_keys(d, keys):
     return {key: d[key] for key in d if key not in keys}
 
-@app.route("/spots_main")
+def get_json_spot_list(spot_list):
 
-def spots_main():
-    list = spots.get_spot_list()
-    dict_list = []
+    # Chance spot list format to JSON in order to use these in spots_main to create
+    # Google Maps markers
+
+    # _sa_instance_state and datetime are not JSON serializable
     invalid = {"_sa_instance_state", "sent_at"}  
-    for spot in list:
+    # Create a dictionary list for simplejson.dumps()
+    dict_list = []
+    for spot in spot_list:
         spot_dict = spot.__dict__
         spot_dict_without_invalid = without_keys(spot_dict, invalid)
         dict_list.append(spot_dict_without_invalid)
-    # spots_dict = map(lambda spot: spot.__dict__, list)
-    spotsJson = simplejson.dumps(dict_list)
-    return render_template("spots_main.html", spots=list, spotsJson=spotsJson)
+    return simplejson.dumps(dict_list)
+
+@app.route("/spots_main", methods=["GET", "POST"])
+
+def spots_main():
+
+    # Check if user has admin privileges
+    admin = users.get_admin_status()
+    print(admin)
+
+    if request.method == "GET":
+        spot_list = spots.get_spot_list()
+        spotsJson = get_json_spot_list(spot_list)   
+        return render_template("spots_main.html", spots=spot_list, spotsJson=spotsJson, admin=admin)
+    if request.method == "POST":
+        spot_id = request.form["spot_id"]
+        spots.remove_spot(spot_id)
+        spot_list = spots.get_spot_list()
+        spotsJson = get_json_spot_list(spot_list)
+        return render_template("spots_main.html", spots=spot_list, spotsJson=spotsJson, admin=admin)
 
 # Function returning page for adding new mtb spots
 
@@ -57,7 +77,8 @@ def add_spot():
         difficulty = request.form["difficulty"]
         latitude = request.form["lat"]
         longitude = request.form["long"]
-        if spots.add_spot(name, spot_type, description, difficulty, latitude, longitude):
+        visible = True
+        if spots.add_spot(name, spot_type, description, difficulty, latitude, longitude, visible):
             return redirect("/spots_main")
         else:
             return render_template("error.html", message="Spottin lisäyksessä ilmeni virhe")

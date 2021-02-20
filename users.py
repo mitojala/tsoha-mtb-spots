@@ -57,3 +57,13 @@ def register(username, password):
 
 def user_id():
     return session.get("user_id", 0)
+
+def get_admin_status():
+    user_id = session.get("user_id", 0)
+    try:
+        sql = "SELECT admin FROM users WHERE id=:user_id"
+        result = db.session.execute(sql, {"user_id":user_id})
+        admin = result.fetchone()
+    except:
+        return False
+    return admin[0]

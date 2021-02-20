@@ -97,6 +97,14 @@
       </div>
     </section>
     <p><b>Lisätty:</b> {{ spot.sent_at.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+
+    {% if admin == True %}
+    <form action="/spots_main" method="post">
+      <input type="hidden" value="{{spot.id}}" name="spot_id" />
+      <input type="submit" value="Poista spotti" />
+    </form>
+    <br />
+    {% endif %}
     <hr />
     {% endfor %}
   </body>

@@ -13,5 +13,6 @@ CREATE TABLE spots (
     difficulty INTEGER,
     latitude DECIMAL,
     longitude DECIMAL,
-    sent_at TIMESTAMP
+    sent_at TIMESTAMP,
+    visible BOOLEAN
 );
