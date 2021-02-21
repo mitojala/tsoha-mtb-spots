@@ -22,7 +22,9 @@ Instructions for usage:
 
 User must register in order to use the application.
 
-Mouse hover on a google maps marker shows the spot name. Otherwise the functions are self explanatory at the moment.
+Admins can remove spots.
+
+Mouse hover on a google maps marker shows the spot name. Clicking on the marker opens an infowindow. Otherwise the functions are self explanatory at the moment.
 
 ---
 
@@ -51,6 +53,7 @@ description : text
 latitude: decimal
 longitude: decimal
 sent_at : timestamp
+visible: boolean
 
 - more rows will be added
 
@@ -64,14 +67,11 @@ index: Photo by Luca Beani on Unsplash
 
 TODO:
 
-- checkboxes for add_spot spot_type? (adds complexity to handling of
-  the input)
-- option to manually input coordinates that will update google maps
-  marker position
+- checkboxes for add_spot spot_type if spot is more than one type? (adds complexity to handling of the input)
+- option to manually input coordinates that will update google maps marker position
 - map search for spots
-- user input validation to add_spot form
-- user/admin privileges
+- more user input validation to add_spot form?
 - better feedback in register user if username is taken
-- mouse hover on a google maps marker shows information box
 - image of spot
 - last visit information to spot details
+- spot information to individual pages?
