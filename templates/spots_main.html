@@ -32,6 +32,7 @@
     <script>
       let map;
       let marker;
+      let infowindow;
 
       // Initialize and add the map
       function initMap() {
@@ -41,6 +42,8 @@
           zoom: 4,
           center: helsinki,
         });
+
+        infowindow = new google.maps.InfoWindow();
 
         // Place mtb spot marker in initial position
 
@@ -53,15 +56,21 @@
             map: map,
             title: spot.name,
           });
+          marker.addListener("click", () => {
+            infowindow.setPosition({ lat: spot.latitude, lng: spot.longitude });
+            infowindow.setContent(`
+            Nimi: ${spot.name}<br><br>
+            Tyyppi: ${spot.spot_type}<br>
+            Kuvaus: ${spot.description}<br>
+            Koordinaatit: (${spot.latitude}, ${spot.longitude})<br>
+            Vaikeusaste: ${spot.difficulty}
+            `);
+            infowindow.setOptions({
+              pixelOffset: new google.maps.Size(0, -35),
+            });
+            infowindow.open(map);
+          });
         });
-
-        //        marker = new google.maps.Marker({
-        //          position: {
-        //            lat: spotsJsonObject[0].latitude,
-        //            lng: spotsJsonObject[0].longitude,
-        //          },
-        //          map: map,
-        //        });
       }
     </script>
   </head>
