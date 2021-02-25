@@ -56,6 +56,10 @@
             map: map,
             title: spot.name,
           });
+
+          // Place infowindow in marker location
+          // Infowindow contans metadata of the spot
+
           marker.addListener("click", () => {
             infowindow.setPosition({ lat: spot.latitude, lng: spot.longitude });
             infowindow.setContent(`
@@ -90,7 +94,7 @@
     <hr />
 
     {% for spot in spots %}
-    <b>Spotti:</b> {{ spot.name }}
+    <b>Nimi:</b> {{ spot.name }}
     <p><b>Tyyppi:</b> {{ spot.spot_type }}</p>
 
     <p><b>Kuvaus:</b> {{ spot.description }}</p>
