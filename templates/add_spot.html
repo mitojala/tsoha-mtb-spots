@@ -109,11 +109,25 @@
       Koordinaatit:<br />
       <p>
         <label for="lat">Leveysaste (latitude):</label><br />
-        <input id="lat" type="number" name="lat" step="any" />
+        <input
+          id="lat"
+          type="number"
+          name="lat"
+          step="any"
+          min="-90"
+          max="90"
+        />
       </p>
       <p>
         <label for="long">Pituusaste (longitude):</label><br />
-        <input id="long" type="number" name="long" step="any" />
+        <input
+          id="long"
+          type="number"
+          name="long"
+          step="any"
+          min="-180"
+          max="180"
+        />
       </p>
       <p>
         <label for="file">Lisää kuva spotista:</label>
