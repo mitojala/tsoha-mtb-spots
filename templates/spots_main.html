@@ -111,6 +111,13 @@
     </section>
     <p><b>Lisätty:</b> {{ spot.sent_at.strftime("%Y-%m-%d %H:%M:%S") }}</p>
 
+    <!-- Show image link if spot contains images -->
+
+    {% if spot.has_image == True %}
+    <p><a href="/spot_image/{{ spot.id }}">Katso spotin kuva</a></p>
+    {% endif %}
+
+    <!-- Show remove spot button if admin -->
     {% if admin == True %}
     <form action="/spots_main" method="post">
       <input type="hidden" value="{{spot.id}}" name="spot_id" />

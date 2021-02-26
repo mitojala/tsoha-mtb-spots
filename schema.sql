@@ -14,5 +14,12 @@ CREATE TABLE spots (
     latitude DECIMAL,
     longitude DECIMAL,
     sent_at TIMESTAMP,
+    has_image BOOLEAN,
     visible BOOLEAN
+);
+
+CREATE TABLE spot_images (
+    id SERIAL PRIMARY KEY,
+    spot_id INTEGER REFERENCES spots,
+    spot_image BYTEA
 );

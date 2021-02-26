@@ -10,7 +10,6 @@ from os import getenv
 from json import JSONEncoder
 from sqlalchemy_serializer import SerializerMixin
 
-
 class MyEncoder(JSONEncoder):
         def default(self, o):
             return o.__dict__ 
@@ -44,16 +43,14 @@ def get_json_spot_list(spot_list):
     return simplejson.dumps(dict_list)
 
 @app.route("/spots_main", methods=["GET", "POST"])
-
 def spots_main():
 
     # Check if user has admin privileges
     admin = users.get_admin_status()
-    print(admin)
 
     if request.method == "GET":
         spot_list = spots.get_spot_list()
-        spotsJson = get_json_spot_list(spot_list)   
+        spotsJson = get_json_spot_list(spot_list)
         return render_template("spots_main.html", spots=spot_list, spotsJson=spotsJson, admin=admin)
     if request.method == "POST":
         spot_id = request.form["spot_id"]
@@ -62,8 +59,15 @@ def spots_main():
         spotsJson = get_json_spot_list(spot_list)
         return render_template("spots_main.html", spots=spot_list, spotsJson=spotsJson, admin=admin)
 
-# Function returning page for adding new mtb spots
+@app.route("/spot_image/<int:id>")
+def show(id):
+    image = spots.show(id)
+    return image
+    # TODO
+    # return render_template("spot_image.html", image=image)
 
+
+# Function returning page for adding new mtb spots
 
 @app.route("/add_spot", methods=["GET", "POST"])
 def add_spot():
@@ -77,19 +81,19 @@ def add_spot():
         difficulty = request.form["difficulty"]
         latitude = request.form["lat"]
         longitude = request.form["long"]
+        file = request.files["file"]
+        spot_image = file.read()
         visible = True
-        if spots.add_spot(name, spot_type, description, difficulty, latitude, longitude, visible):
-            return redirect("/spots_main")
+        if len(spot_image) == 0:
+            if spots.add_spot(name, spot_type, description, difficulty, latitude, longitude, visible):
+                return redirect("/spots_main")
+            else:
+                return render_template("error.html", message="Spottin lisäyksessä ilmeni virhe")
         else:
-            return render_template("error.html", message="Spottin lisäyksessä ilmeni virhe")
-
-# Function returning main page
-
-
-@app.route("/add_spot_to_map")
-def add_spot_to_map():
-    return render_template("add_spot_to_map.html")
-
+            if spots.add_spot_with_image(name, spot_type, description, difficulty, latitude, longitude, visible, spot_image):
+                return redirect("/spots_main")
+            else:
+                return render_template("error.html", message="Spottin lisäyksessä ilmeni virhe")
 # User login
 # If method is GET then login page is shown
 # If method is POST then the login form is handled and user is
