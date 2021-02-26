@@ -6,6 +6,8 @@ import users
 import spots
 import json
 import simplejson
+import base64
+import io
 from os import getenv
 from json import JSONEncoder
 from sqlalchemy_serializer import SerializerMixin
@@ -59,13 +61,14 @@ def spots_main():
         spotsJson = get_json_spot_list(spot_list)
         return render_template("spots_main.html", spots=spot_list, spotsJson=spotsJson, admin=admin)
 
+@app.route("/show_spot_image/<int:id>")
+def show_image(id):
+    return render_template("show_spot_image.html", id=id)
+
 @app.route("/spot_image/<int:id>")
-def show(id):
+def get_image(id):
     image = spots.show(id)
     return image
-    # TODO
-    # return render_template("spot_image.html", image=image)
-
 
 # Function returning page for adding new mtb spots
 

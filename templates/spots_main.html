@@ -114,7 +114,9 @@
     <!-- Show image link if spot contains images -->
 
     {% if spot.has_image == True %}
-    <p><a href="/spot_image/{{ spot.id }}">Katso spotin kuva</a></p>
+    <p>
+      <b>Spotin</b> <a href="/show_spot_image/{{ spot.id }}"><b>kuva</b></a>
+    </p>
     {% endif %}
 
     <!-- Show remove spot button if admin -->

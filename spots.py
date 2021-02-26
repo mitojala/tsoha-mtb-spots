@@ -48,7 +48,7 @@ def get_spot_image_list():
     result = db.session.execute(sql)
     return result.fetchall()
 
-# Function for inserting a new mtb spot into database
+# Function for inserting a new mtb spot WITHOUT image into database
 
 def add_spot(name, spot_type, description, difficulty, latitude, longitude, visible):
     user_id = users.user_id()
@@ -63,6 +63,7 @@ def add_spot(name, spot_type, description, difficulty, latitude, longitude, visi
         return False
     return True
 
+# Function for inserting a new mtb spot WITH image into database
 
 def add_spot_with_image(name, spot_type, description, difficulty, latitude, longitude, visible, spot_image):
     user_id = users.user_id()
@@ -81,6 +82,15 @@ def add_spot_with_image(name, spot_type, description, difficulty, latitude, long
         return False
     return True
 
+# TODO
+# Function for inserting an image to existing spot
+
+# def add_image_to_spot(spot_id, image):
+    
+
+# Function for removing a spot from list
+# The spot is not deleted from database but rather set not to be visible
+
 def remove_spot(spot_id):
     user_id = users.user_id()
     if user_id == 0:
@@ -94,6 +104,8 @@ def remove_spot(spot_id):
     except:
         return False
     return True
+
+# Function for showing spot image
 
 def show(spot_id):
     sql = "SELECT spot_image FROM spot_images WHERE spot_id=:spot_id"
