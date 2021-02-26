@@ -47,15 +47,21 @@ admin : boolean
 
 Spots - table of mtb spots:
 
+id : integer
 name : text
 type : text
 description : text
 latitude: decimal
 longitude: decimal
 sent_at : timestamp
+has_image : boolean
 visible: boolean
 
-- more rows will be added
+Spot images - images of mtb spots:
+
+id : integer
+spot_id : integer references spots,
+spot_image : bytea
 
 ---
 
