@@ -84,12 +84,19 @@ def add_spot_with_image(name, spot_type, description, difficulty, latitude, long
 
 # TODO
 # Function for inserting an image to existing spot
-
 # def add_image_to_spot(spot_id, image):
     
+# Function for adding a comment to a mtb spot
+
+def add_spot_comment(content, spot_id):
+    sql = "INSERT INTO spot_comments (content, spot_id, sent_at) VALUES (:content, :spot_id, NOW())"
+    db.session.execute(sql, {"content":content, "spot_id":spot_id})
+    db.session.commit()
+    return True
 
 # Function for removing a spot from list
 # The spot is not deleted from database but rather set not to be visible
+
 
 def remove_spot(spot_id):
     user_id = users.user_id()
@@ -114,3 +121,8 @@ def show(spot_id):
     response = make_response(bytes(data))
     response.headers.set("Content-Type","image/jpeg")
     return response
+
+def show_comments(spot_id):
+    sql = "SELECT content, sent_at FROM spot_comments WHERE spot_id=:spot_id"
+    result = db.session.execute(sql, {"spot_id":spot_id})
+    return result.fetchall()

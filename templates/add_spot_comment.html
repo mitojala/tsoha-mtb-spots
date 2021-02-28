@@ -1,0 +1,13 @@
+<form action="/send_comment" method="post">
+  <p>Kommentti:</p>
+  <p>
+    <textarea name="content" rows="6" cols="60"></textarea>
+    <br />
+  </p>
+  <input type="hidden" value="{{ id }}" name="id" />
+  <input type="submit" value="Luo uusi kommentti" />
+</form>
+
+<p>
+  <a href="/spots_main">Takaisin spotteihin</a>
+</p>

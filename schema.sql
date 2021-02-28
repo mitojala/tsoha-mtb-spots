@@ -23,3 +23,10 @@ CREATE TABLE spot_images (
     spot_id INTEGER REFERENCES spots,
     spot_image BYTEA
 );
+
+CREATE TABLE spot_comments (
+    id SERIAL PRIMARY KEY,
+    content TEXT,
+    spot_id INTEGER REFERENCES spots,
+    sent_at TIMESTAMP
+);

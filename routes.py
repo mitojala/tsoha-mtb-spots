@@ -24,6 +24,7 @@ def index():
 
 # Function returning mtb spots main page containing a list of
 # mtb spots.
+# First two functions (without_keys and get_json_spot_list) help in transforming the data into JSON format
 
 
 def without_keys(d, keys):
@@ -61,6 +62,9 @@ def spots_main():
         spotsJson = get_json_spot_list(spot_list)
         return render_template("spots_main.html", spots=spot_list, spotsJson=spotsJson, admin=admin)
 
+# Functions for showing the spot image
+# First route serving the template and second route serving the actual image
+
 @app.route("/show_spot_image/<int:id>")
 def show_image(id):
     return render_template("show_spot_image.html", id=id)
@@ -69,6 +73,28 @@ def show_image(id):
 def get_image(id):
     image = spots.show(id)
     return image
+
+# Function for showing the comments created of a spot
+
+@app.route("/show_spot_comments/<int:id>")
+def show_comments(id):
+    comments = spots.show_comments(id)
+    return render_template("show_spot_comments.html", id=id, comments=comments)
+
+# Function for adding a comment to a spot
+
+@app.route("/add_spot_comment/<int:id>")
+def add_spot_comment(id):
+    return render_template("add_spot_comment.html", id=id)
+
+@app.route("/send_comment", methods=["POST"])
+def send_comment():
+    content = request.form["content"]
+    spot_id = request.form["id"]
+    if spots.add_spot_comment(content, spot_id):
+        return redirect("/")
+    else:
+        return render_template("error.html",message="Kommentin lisäys ei onnistunut")
 
 # Function returning page for adding new mtb spots
 
