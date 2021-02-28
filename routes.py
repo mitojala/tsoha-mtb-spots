@@ -92,7 +92,7 @@ def send_comment():
     content = request.form["content"]
     spot_id = request.form["id"]
     if spots.add_spot_comment(content, spot_id):
-        return redirect("/")
+        return redirect(f'/show_spot_comments/{spot_id}')
     else:
         return render_template("error.html",message="Kommentin lisäys ei onnistunut")
 
