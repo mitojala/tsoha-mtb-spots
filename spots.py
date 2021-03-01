@@ -12,6 +12,7 @@ class Spots(db.Model, SerializerMixin):
     __tablename__ = 'spots'
 
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer)
     name = db.Column(db.Text)
     spot_type = db.Column(db.Text)
     description = db.Column(db.Text)
@@ -22,7 +23,8 @@ class Spots(db.Model, SerializerMixin):
     has_image = db.Column(db.Boolean)
     visible = db.Column(db.Boolean)
 
-    def __init__(self, name, spot_type, description, difficulty, latitude, longitude, sent_at, has_image, visible):
+    def __init__(self, user_id, name, spot_type, description, difficulty, latitude, longitude, sent_at, has_image, visible):
+        self.user_id = user_id
         self.name = name
         self.spot_type = spot_type
         self.description = description
@@ -36,9 +38,6 @@ class Spots(db.Model, SerializerMixin):
 # Function returning all mtb spots
 
 def get_spot_list():
-    # sql = "SELECT * FROM spots"
-    # result = db.session.execute(sql)
-    # return result.fetchall()
     return Spots.query.filter_by(visible=True).all()
 
 # Function returning all mtb spots images
@@ -56,8 +55,8 @@ def add_spot(name, spot_type, description, difficulty, latitude, longitude, visi
         return False
 
     try:
-        sql = "INSERT INTO spots (name,spot_type,description,difficulty,latitude,longitude,sent_at,has_image,visible) VALUES (:name,:spot_type,:description,:difficulty,:latitude,:longitude,NOW(),FALSE,:visible)"
-        db.session.execute(sql, {"name": name, "spot_type": spot_type, "description": description, "difficulty": difficulty, "latitude": latitude, "longitude": longitude, "has_image": False, "visible": visible})
+        sql = "INSERT INTO spots (user_id,name,spot_type,description,difficulty,latitude,longitude,sent_at,has_image,visible) VALUES (:user_id,:name,:spot_type,:description,:difficulty,:latitude,:longitude,NOW(),FALSE,:visible)"
+        db.session.execute(sql, {"user_id": user_id, "name": name, "spot_type": spot_type, "description": description, "difficulty": difficulty, "latitude": latitude, "longitude": longitude, "has_image": False, "visible": visible})
         db.session.commit()
     except:
         return False
@@ -112,7 +111,7 @@ def remove_spot(spot_id):
         return False
     return True
 
-# Function for showing spot image
+# Function for retrieving spot image
 
 def show(spot_id):
     sql = "SELECT spot_image FROM spot_images WHERE spot_id=:spot_id"
@@ -122,8 +121,9 @@ def show(spot_id):
     response.headers.set("Content-Type","image/jpeg")
     return response
 
+# Function for retrieving spot comments
+
 def show_comments(spot_id):
-    # sql = "SELECT content, sent_at FROM spot_comments WHERE spot_id=:spot_id"
     sql = "SELECT s.content, s.sent_at, u.username FROM spot_comments s INNER JOIN users u ON s.user_id=u.id WHERE s.spot_id=:spot_id ORDER BY s.sent_at DESC"
     result = db.session.execute(sql, {"spot_id":spot_id})
     return result.fetchall()

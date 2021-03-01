@@ -62,6 +62,34 @@ def spots_main():
         spotsJson = get_json_spot_list(spot_list)
         return render_template("spots_main.html", spots=spot_list, spotsJson=spotsJson, admin=admin)
 
+# Function returning page for adding new mtb spots
+
+@app.route("/add_spot", methods=["GET", "POST"])
+def add_spot():
+    if request.method == "GET":
+        google_maps_url = getenv("GOOGLE_MAPS_URL")
+        return render_template("add_spot.html", google_maps_url=google_maps_url)
+    if request.method == "POST":
+        name = request.form["name"]
+        spot_type = request.form["spot_type"]
+        description = request.form["description"]
+        difficulty = request.form["difficulty"]
+        latitude = request.form["lat"]
+        longitude = request.form["long"]
+        file = request.files["file"]
+        spot_image = file.read()
+        visible = True
+        if len(spot_image) == 0:
+            if spots.add_spot(name, spot_type, description, difficulty, latitude, longitude, visible):
+                return redirect("/spots_main")
+            else:
+                return render_template("error.html", message="Spottin lisäyksessä ilmeni virhe")
+        else:
+            if spots.add_spot_with_image(name, spot_type, description, difficulty, latitude, longitude, visible, spot_image):
+                return redirect("/spots_main")
+            else:
+                return render_template("error.html", message="Spottin lisäyksessä ilmeni virhe")
+
 # Functions for showing the spot image
 # First route serving the template and second route serving the actual image
 
@@ -97,33 +125,6 @@ def send_comment():
     else:
         return render_template("error.html",message="Kommentin lisäys ei onnistunut")
 
-# Function returning page for adding new mtb spots
-
-@app.route("/add_spot", methods=["GET", "POST"])
-def add_spot():
-    if request.method == "GET":
-        google_maps_url = getenv("GOOGLE_MAPS_URL")
-        return render_template("add_spot.html", google_maps_url=google_maps_url)
-    if request.method == "POST":
-        name = request.form["name"]
-        spot_type = request.form["spot_type"]
-        description = request.form["description"]
-        difficulty = request.form["difficulty"]
-        latitude = request.form["lat"]
-        longitude = request.form["long"]
-        file = request.files["file"]
-        spot_image = file.read()
-        visible = True
-        if len(spot_image) == 0:
-            if spots.add_spot(name, spot_type, description, difficulty, latitude, longitude, visible):
-                return redirect("/spots_main")
-            else:
-                return render_template("error.html", message="Spottin lisäyksessä ilmeni virhe")
-        else:
-            if spots.add_spot_with_image(name, spot_type, description, difficulty, latitude, longitude, visible, spot_image):
-                return redirect("/spots_main")
-            else:
-                return render_template("error.html", message="Spottin lisäyksessä ilmeni virhe")
 # User login
 # If method is GET then login page is shown
 # If method is POST then the login form is handled and user is
