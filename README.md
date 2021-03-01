@@ -48,6 +48,7 @@ admin : boolean
 Spots - table of mtb spots:
 
 id : integer
+user_id: integer
 name : text
 type : text
 description : text
@@ -63,6 +64,14 @@ id : integer
 spot_id : integer references spots,
 spot_image : bytea
 
+Spot_comments - comments made of spots:
+
+id : integer,
+content : text,
+spot_id : integer references spots,
+user_id : integer references users,
+sent_at : timestamp
+
 ---
 
 Background images:
@@ -75,9 +84,8 @@ TODO:
 
 - checkboxes for add_spot spot_type if spot is more than one type? (adds complexity to handling of the input)
 - option to manually input coordinates that will update google maps marker position
-- map search for spots
-- more user input validation to add_spot form?
+- map search for spots (postgis?)
 - better feedback in register user if username is taken
-- image of spot
 - last visit information to spot details
 - spot information to individual pages?
+- possibility to add image later to a spot
