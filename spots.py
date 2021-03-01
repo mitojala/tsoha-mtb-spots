@@ -70,9 +70,9 @@ def add_spot_with_image(name, spot_type, description, difficulty, latitude, long
         return False
 
     try:
-        sql = "INSERT INTO spots (name,spot_type,description,difficulty,latitude,longitude,sent_at,has_image,visible) VALUES (:name,:spot_type,:description,:difficulty,:latitude,:longitude,NOW(),TRUE,:visible) RETURNING id"
+        sql = "INSERT INTO spots (user_id,name,spot_type,description,difficulty,latitude,longitude,sent_at,has_image,visible) VALUES (:user_id,:name,:spot_type,:description,:difficulty,:latitude,:longitude,NOW(),TRUE,:visible) RETURNING id"
         result = db.session.execute(
-        sql, {"name": name, "spot_type": spot_type, "description": description, "difficulty": difficulty, "latitude": latitude, "longitude": longitude, "has_image": True, "visible": visible})
+        sql, {"user_id": user_id,"name": name, "spot_type": spot_type, "description": description, "difficulty": difficulty, "latitude": latitude, "longitude": longitude, "has_image": True, "visible": visible})
         spot_id = result.fetchone()[0]
         sql = "INSERT INTO spot_images (spot_id, spot_image) VALUES (:spot_id, :spot_image)"
         db.session.execute(sql, {"spot_id":spot_id, "spot_image":spot_image})
