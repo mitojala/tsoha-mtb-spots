@@ -119,6 +119,11 @@
       spotin
       <a href="/show_spot_comments/{{ spot.id }}"> kommentit.</a>
     </p>
+    {% else %}
+    <p>
+      <b>Katso</b> spotin
+      <a href="/show_spot_comments/{{ spot.id }}"> kommentit.</a>
+    </p>
     {% endif %}
 
     <!-- Show remove spot button if admin -->
