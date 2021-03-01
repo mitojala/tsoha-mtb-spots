@@ -1,4 +1,4 @@
-<form action="/send_comment" method="post">
+<form action="/send_comment" method="POST" onsubmit="return check(this)">
   <p>Kommentti:</p>
   <p>
     <textarea name="content" rows="6" cols="60"></textarea>
@@ -11,3 +11,13 @@
 <p>
   <a href="/spots_main">Takaisin spotteihin</a>
 </p>
+
+<script>
+  function check(form) {
+    if (form.content.value.length > 5000) {
+      alert("Kommentti on liian pitkä");
+      return false;
+    }
+    return true;
+  }
+</script>

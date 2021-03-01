@@ -119,6 +119,8 @@ def add_spot_comment(id):
 def send_comment():
     user_id = users.user_id()
     content = request.form["content"]
+    if len(content) > 5000:
+        return render_template("error.html",message="Kommentti on liian pitkä") 
     spot_id = request.form["id"]
     if spots.add_spot_comment(content, spot_id, user_id):
         return redirect(f'/show_spot_comments/{spot_id}')
