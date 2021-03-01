@@ -7,6 +7,7 @@ CREATE TABLE users (
 
 CREATE TABLE spots (
     id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users,
     name TEXT,
     spot_type TEXT,
     description TEXT,
@@ -28,5 +29,6 @@ CREATE TABLE spot_comments (
     id SERIAL PRIMARY KEY,
     content TEXT,
     spot_id INTEGER REFERENCES spots,
+    user_id INTEGER REFERENCES users,
     sent_at TIMESTAMP
 );

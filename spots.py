@@ -88,9 +88,9 @@ def add_spot_with_image(name, spot_type, description, difficulty, latitude, long
     
 # Function for adding a comment to a mtb spot
 
-def add_spot_comment(content, spot_id):
-    sql = "INSERT INTO spot_comments (content, spot_id, sent_at) VALUES (:content, :spot_id, NOW())"
-    db.session.execute(sql, {"content":content, "spot_id":spot_id})
+def add_spot_comment(content, spot_id, user_id):
+    sql = "INSERT INTO spot_comments (content, spot_id, user_id, sent_at) VALUES (:content, :spot_id, :user_id, NOW())"
+    db.session.execute(sql, {"content":content, "spot_id":spot_id, "user_id":user_id})
     db.session.commit()
     return True
 
@@ -123,6 +123,7 @@ def show(spot_id):
     return response
 
 def show_comments(spot_id):
-    sql = "SELECT content, sent_at FROM spot_comments WHERE spot_id=:spot_id"
+    # sql = "SELECT content, sent_at FROM spot_comments WHERE spot_id=:spot_id"
+    sql = "SELECT s.content, s.sent_at, u.username FROM spot_comments s INNER JOIN users u ON s.user_id=u.id WHERE s.spot_id=:spot_id ORDER BY s.sent_at DESC"
     result = db.session.execute(sql, {"spot_id":spot_id})
     return result.fetchall()

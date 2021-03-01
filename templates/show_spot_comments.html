@@ -10,10 +10,13 @@
     <a href="/spots_main"> Takaisin spotteihin</a><br />
     <br />
     <a href="/add_spot_comment/{{ id }}"> Lisää uusi kommentti</a><br />
+    <br />
+    <h3>Viimeisimmät kommentit:</h3>
+    <hr />
     {% for comment in comments %}
     <div>
-      <p>Kommentti lisätty: {{ comment[1].strftime("%Y-%m-%d %H:%M") }}</p>
-      <p>{{ comment[0] }}</p>
+      <p>{{ comment[2] }} ({{ comment[1].strftime("%Y-%m-%d %H:%M") }}):</p>
+      <p><i>{{ comment[0] }}</i></p>
     </div>
     {% endfor %}
   </body>
