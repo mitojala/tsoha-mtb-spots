@@ -38,7 +38,7 @@ class Spots(db.Model, SerializerMixin):
 # Function returning all mtb spots
 
 def get_spot_list():
-    return Spots.query.filter_by(visible=True).all()
+    return Spots.query.filter_by(visible=True).order_by(Spots.sent_at.desc()).all()
 
 # Function returning all mtb spots images
 
