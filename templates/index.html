@@ -1,34 +1,10 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body,
-    html {
+    body {
       height: 100%;
       margin: 0;
       color: white;
-    }
-    h1 {
-      position: relative;
-      left: 30px;
-      top: 20px;
-      color: white;
-      font-size: 250%;
-    }
-
-    p {
-      position: relative;
-      left: 30px;
-      top: 15px;
-      color: white;
-      font-size: 150%;
-    }
-
-    a {
-      position: relative;
-      left: 30px;
-      top: 20px;
-      color: white;
-      font-size: 120%;
     }
 
     .bg {
@@ -41,28 +17,43 @@
       /* Full height */
       height: 100%;
 
-      /* Center and scale the image nicely */
+      /* Center and scale the image */
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
     }
+
+    .header {
+      display: block;
+      float: left;
+      background-color: white;
+      padding: 1em;
+      font-size: 1.2em;
+      color: black;
+      border-bottom-right-radius: 0.5em;
+      border-bottom-right-radius: 0.5em;
+    }
   </style>
 </head>
 
-<body class="bg">
-  <h1>Maastopyöräilyn jännyyspaikat</h1>
-  <p>
-    <b
-      >Etsi maastopyöräilyn jännyyspaikkoja ja lisää omia paikkoja muiden
-      nähtäville.</b
-    >
-  </p>
+<body>
+  <div class="header">
+    <h1>Maastopyöräilyn vaaranpaikat</h1>
 
-  {% if session.user_id %}
-  <a color:white; href="/spots_main">Etsi tai lisää jännyyspaikkoja</a
-  ><br /><br />
-  <a href="/logout">Kirjaudu ulos</a>
-  {% else %}
-  <a href="/login">Kirjaudu sisään</a>
-  {% endif %}
+    <p>
+      Maastopyöräilypaikkoja joita toiset välttävät ja toiset etsivät. Erilaisia
+      ja eritasoisia kohteita, <br />joista löytyy jotain niin aloittelijoille
+      kuin myös paatuneille adrenaliininarkkareille.
+    </p>
+    {% if session.user_id %}
+    <a style="font-size: 1em; color: black" href="/spots_main"
+      >Etsi tai lisää uusia kohteita</a
+    ><br /><br />
+    <a style="font-size: 1em; color: black" href="/logout">Kirjaudu ulos</a>
+    {% else %}
+    <a style="font-size: 1em; color: black" href="/login">Kirjaudu sisään</a>
+    {% endif %}
+    <br />
+  </div>
+  <div class="bg"></div>
 </body>

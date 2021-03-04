@@ -1,14 +1,38 @@
-<form action="/login" method="post">
-  Kayttajatunnus: <input type="text" name="username" />
-  <p>Salasana: <input type="password" name="password" /></p>
+<style>
+  .login tr {
+    line-height: 1.5em;
+    font-size: 1.1em;
+  }
+</style>
+
+<div class="login">
+  <form action="/login" method="post">
+    <table>
+      <tr>
+        <td>Kayttajatunnus:</td>
+        <td><input type="text" name="username" /></td>
+      </tr>
+      <tr>
+        <td>Salasana:</td>
+        <td><input type="password" name="password" /></td>
+      </tr>
+      <tr>
+        <td>
+          <input
+            style="font-size: 0.8em; margin-top: 1em"
+            type="submit"
+            value="Kirjaudu sisään"
+          />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+<div>
+  <hr />
+  <a style="color: black" href="/register">Luo käyttäjätili</a>
 
   <p>
-    <input type="submit" value="Kirjaudu sisään" />
+    <a style="color: black" href="/">Takaisin etusivulle</a>
   </p>
-</form>
-
-<a href="/register">Luo käyttäjätili</a>
-
-<p>
-  <a href="/">Takaisin etusivulle</a>
-</p>
+</div>
