@@ -90,6 +90,21 @@ def add_spot():
             else:
                 return render_template("error.html", message="Spottin lisäyksessä ilmeni virhe")
 
+# Function for adding image to existing spot
+
+@app.route("/add_image_to_spot/<int:id>", methods=["GET", "POST"])
+def add_image(id):
+    if request.method == "GET":
+        return render_template("add_image_to_spot.html", id=id)
+    if request.method == "POST":
+        spot_id = request.form["id"]
+        file = request.files["file"]
+        spot_image = file.read()
+        if spots.add_image_to_spot(spot_id, spot_image):
+            return redirect("/spots_main")
+        else:
+            return render_template("error.html", message="Kuvan lisäyksessä kohteeseen ilmeni virhe")
+
 # Function returning spot details page
 
 @app.route("/show_spot_details/<int:id>")

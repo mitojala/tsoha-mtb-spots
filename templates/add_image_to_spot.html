@@ -1,0 +1,18 @@
+<a style="color: black" href="/spots_main">Takaisin karttanäkymään</a>
+<a style="color: black" href="/show_spot_details/{{ id }}">/ kohteen sivulle</a>
+<br /><br />
+<hr />
+
+<form
+  action="/add_image_to_spot/{{ id }}"
+  method="post"
+  enctype="multipart/form-data"
+>
+  <p>
+    <label for="file">Lisää kuva kohteeseen:</label>
+    <br /><br />
+    <input type="file" id="file" name="file" />
+    <input type="hidden" value="{{ id }}" name="id" />
+  </p>
+  <input type="submit" value="Lisää kuva" />
+</form>

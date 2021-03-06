@@ -86,10 +86,22 @@ def add_spot_with_image(name, spot_type, description, difficulty, latitude, long
         return False
     return True
 
-# TODO
 # Function for inserting an image to existing spot
-# def add_image_to_spot(spot_id, image):
-    
+def add_image_to_spot(spot_id, spot_image):
+    user_id = users.user_id()
+    if user_id == 0:
+        return False
+
+    try:
+        sql = "UPDATE spots SET has_image=True WHERE id=:id"
+        db.session.execute(sql, {"id": spot_id})
+        sql = "INSERT INTO spot_images (spot_id, spot_image) VALUES (:spot_id, :spot_image)"
+        db.session.execute(sql, {"spot_id":spot_id, "spot_image":spot_image})
+        db.session.commit()
+    except:
+        return False
+    return True
+
 # Function for adding a comment to a mtb spot
 
 def add_spot_comment(content, spot_id, user_id):

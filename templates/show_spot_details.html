@@ -38,17 +38,22 @@
 
     <!-- Show image link if spot contains images -->
 
+    <hr />
+
     {% if spot.has_image == True %}
 
     <b>Kohteen kuva:</b>
 
     <p><img id="picture" src="/spot_image/{{ spot.id }}" /></p>
 
-    {% endif %}
+    {% else %}
+    <p>
+      <a style="color: black" href="/add_image_to_spot/{{ spot.id }}">
+        Lisää kohteeseen kuva.</a
+      >
+    </p>
 
-    <hr />
-
-    {% if (comments is defined) and comments %}
+    {% endif %} {% if (comments is defined) and comments %}
 
     <b>Kohteesta jätetyt kommentit:</b>
 
