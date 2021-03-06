@@ -16,7 +16,7 @@ Ylläpitäjä voi lisätä/poistaa spotteja.
 
 Current state:
 
-Basic functions such as user handling, creating mtb spots (with map interface), listing added spots and showing these on map have been enabled. More complex features will be added in the capacity the time limit permits (final deadline).
+Basic functions such as user handling, creating mtb spots (with map interface), listing added spots and showing these on map have been enabled. Users can add images to spots when creating these. Users can also leave comments to spots.
 
 Instructions for usage:
 
@@ -64,7 +64,7 @@ id : integer
 spot_id : integer references spots,
 spot_image : bytea
 
-Spot_comments - comments made of spots:
+Spot comments - comments made of spots:
 
 id : integer,
 content : text,
@@ -87,5 +87,4 @@ TODO:
 - map search for spots (postgis?)
 - better feedback in register user if username is taken
 - last visit information to spot details
-- spot information to individual pages?
-- possibility to add image later to a spot
+- preserve map zoom level for better user experience?
