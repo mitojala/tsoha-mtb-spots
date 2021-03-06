@@ -82,13 +82,15 @@
 
   <body>
     <div id="map"></div>
-
+    <br />
     <p>
-      <a style="color: black" href="/add_spot">Lisää uusi kohde</a>
+      <a style="color: black; font-size: 1.2em" href="/add_spot"
+        >Lisää uusi kohde</a
+      >
     </p>
 
-    <p>
-      <a style="color: black" href="/">Takaisin etusivulle</a>
+    <p style="margin-bottom: 30px">
+      <a style="color: black; font-size: 1.2em" href="/">Takaisin etusivulle</a>
     </p>
 
     <h3>Palveluun lisätyt kohteet:</h3>
@@ -128,6 +130,10 @@
       <a style="color: black" href="/show_spot_comments/{{ spot.id }}">
         kommentit.</a
       >
+    </p>
+    <p>
+      <b>Lisää</b> kohteeseen
+      <a style="color: black" href="/add_image_to_spot/{{ spot.id }}"> kuva.</a>
     </p>
     {% endif %}
 
