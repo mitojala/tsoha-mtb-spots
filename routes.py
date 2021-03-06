@@ -90,6 +90,14 @@ def add_spot():
             else:
                 return render_template("error.html", message="Spottin lisäyksessä ilmeni virhe")
 
+# Function returning spot details page
+
+@app.route("/show_spot_details/<int:id>")
+def show_details(id):
+    spot = spots.get_one_spot(id)
+    comments = spots.show_comments(id)
+    return render_template("show_spot_details.html", spot=spot, comments=comments)
+
 # Functions for showing the spot image
 # First route serving the template and second route serving the actual image
 

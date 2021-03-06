@@ -40,6 +40,11 @@ class Spots(db.Model, SerializerMixin):
 def get_spot_list():
     return Spots.query.filter_by(visible=True).order_by(Spots.sent_at.desc()).all()
 
+# Function returning specific mtb spot
+
+def get_one_spot(id):
+    return Spots.query.filter_by(id=id).first()
+
 # Function returning all mtb spots images
 
 def get_spot_image_list():

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    .comments {
+      width: 50%;
+      margin-bottom: 20px;
+      border-bottom: 1px solid;
+    }
+  </style>
+
+  <body>
+    <a style="color: black" href="/spots_main"> Takaisin spotteihin</a><br />
+    <br />
+    <hr />
+
+    <b>Nimi:</b> {{ spot.name }}
+    <p><b>Tyyppi:</b> {{ spot.spot_type }}</p>
+
+    <p><b>Kuvaus:</b> {{ spot.description }}</p>
+
+    <p><b>Vaikeusaste:</b> {{ spot.difficulty }}</p>
+
+    <section>
+      <b>Koordinaatit:</b>
+
+      <div>
+        <p>Leveysaste (latitude):<br />{{ spot.latitude }}</p>
+        <p>Pituusaste (longitude):<br />{{ spot.longitude }}</p>
+      </div>
+    </section>
+    <p><b>Lisätty:</b> {{ spot.sent_at.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+
+    <!-- Show image link if spot contains images -->
+
+    {% if spot.has_image == True %}
+
+    <b>Kohteen kuva:</b>
+
+    <p><img id="picture" src="/spot_image/{{ spot.id }}" /></p>
+
+    {% endif %}
+
+    <hr />
+
+    {% if (comments is defined) and comments %}
+
+    <b>Kohteesta jätetyt kommentit:</b>
+
+    {% for comment in comments %}
+    <div class="comments">
+      <p>{{ comment[2] }} ({{ comment[1].strftime("%Y-%m-%d %H:%M") }}):</p>
+      <p><i>{{ comment[0] }}</i></p>
+    </div>
+    {% endfor %} {% endif %}
+  </body>
+</html>

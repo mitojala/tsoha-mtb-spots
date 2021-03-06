@@ -67,7 +67,8 @@
             Tyyppi: ${spot.spot_type}<br>
             Kuvaus: ${spot.description}<br>
             Koordinaatit: (${spot.latitude}, ${spot.longitude})<br>
-            Vaikeusaste: ${spot.difficulty}
+            Vaikeusaste: ${spot.difficulty}<hr>
+            <a style="color: black" href="/show_spot_details/${spot.id}">Siirry kohteen sivulle</a>
             `);
             infowindow.setOptions({
               pixelOffset: new google.maps.Size(0, -35),
