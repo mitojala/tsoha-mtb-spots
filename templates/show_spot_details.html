@@ -14,7 +14,8 @@
   </style>
 
   <body>
-    <a style="color: black" href="/spots_main"> Takaisin spotteihin</a><br />
+    <a style="color: black" href="/spots_main"> Takaisin karttanäkymään</a
+    ><br />
     <br />
     <hr />
 
@@ -57,5 +58,9 @@
       <p><i>{{ comment[0] }}</i></p>
     </div>
     {% endfor %} {% endif %}
+
+    <a style="color: black" href="/add_spot_comment/{{ spot.id }}">
+      Lisää uusi kommentti</a
+    >
   </body>
 </html>
